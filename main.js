@@ -86,12 +86,46 @@ function Balanced(tree) {
     return result > 1 ? false : true;
 }
 
-let isSameTree = function(p, q) {
-    if (p === null && q === null) return true;
-    if (p === null || q === null) return false;
-    return (p.value === q.value) && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-};
+function sameBST(arr1, arr2) {
+    if (arr1.length !== arr2.length) false;
+    if (arr1[0] !== arr2[0]) false;
+  
+    let left1 = [];
+    let right1 = [];
+    let left2 = [];
+    let right2 = [];
+  
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] < arr1[0]) {
+        left1.push(arr1[i]);
+      } else {
+        right1.push(arr1[i]);
+      }
+      if (arr2[i] < arr2[0]) {
+        left2.push(arr2[i]);
+      } else {
+        right2.push(arr2[i]);
+      }
+    }
+  
+    console.log('left1', left1);
+    console.log('right1', right1);
+    console.log('left2', left2);
+    console.log('right2', right2);
+  
+    if (right1.length === right2.length) {
+      for (let i = 0; i < right1.length; i++) {
+        if (right1[i] !== right2[i]) {
+          return false;
+        } else if (left1[0] !== left2[i]) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
   
   //Complexity is O(n) - still linear despite having to run through both trees.
   
-  console.log(isSameTree([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 6, 0]));
+  console.log(sameBST([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 6, 0]));
